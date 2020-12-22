@@ -1,4 +1,4 @@
-FROM debian:buster-slim
+FROM debian:10-slim
 ENV DEBIAN_FRONTEND noninteractive
 ENV ROON_SERVER_PKG RoonServer_linuxx64.tar.bz2
 ENV ROON_SERVER_URL http://download.roonlabs.com/builds/${ROON_SERVER_PKG}
