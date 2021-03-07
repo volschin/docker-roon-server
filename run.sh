@@ -6,4 +6,4 @@ if test ! -d RoonServer; then
   rm -f $ROON_SERVER_PKG
 fi
 /usr/sbin/alsactl restore
-/app/RoonServer/start.sh
+exec /app/RoonServer/start.sh
