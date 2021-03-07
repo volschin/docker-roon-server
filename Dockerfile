@@ -22,4 +22,4 @@ RUN chmod 755 /run.sh \
   && RoonServer/check.sh
   
 # ENTRYPOINT /run.sh
-ENTRYPOINT /RoonServer/start.sh
+ENTRYPOINT ["/RoonServer/start.sh"]
