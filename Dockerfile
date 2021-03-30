@@ -16,9 +16,6 @@ VOLUME [ "/app", "/data", "/music", "/backup" ]
 RUN curl $ROON_SERVER_URL -O \
   && tar xjf $ROON_SERVER_PKG \
   && rm -f $ROON_SERVER_PKG
-
-ADD run.sh /
-RUN chmod 755 /run.sh \
   && RoonServer/check.sh
   
 # ENTRYPOINT /run.sh
