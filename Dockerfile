@@ -12,7 +12,7 @@ RUN apt-get -q update \
 
 VOLUME [ "/app", "/data", "/music", "/backup" ]
 
-RUN curl $ROON_SERVER_URL -O \
+RUN curl -s $ROON_SERVER_URL -O \
   && tar xjf $ROON_SERVER_PKG \
   && rm -f $ROON_SERVER_PKG \
   && cat RoonServer/VERSION \
@@ -21,11 +21,11 @@ RUN curl $ROON_SERVER_URL -O \
   && RoonServer/check.sh
 
 LABEL org.opencontainers.image.vendor=Roon Labs LLC \
-      org.opencontainers.image.url=https://roonlabs.com/ \
+      org.opencontainers.image.url=https://roonlabs.com \
       org.opencontainers.image.title=Roon Server \
       org.opencontainers.image.description=Music Player & Music Server for Enthusiasts \
       org.opencontainers.image.version=v1.8.1 \
-      org.opencontainers.image.documentation=https://docs.traefik.io
+      org.opencontainers.image.documentation=https://help.roonlabs.com/portal/en/home \
       com.roon.version="1.8 (build 783) stable" \
       com.roon.release-date="2021-03-30"
 
