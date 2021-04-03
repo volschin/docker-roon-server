@@ -16,8 +16,8 @@ RUN curl $ROON_SERVER_URL -O \
   && tar xjf $ROON_SERVER_PKG \
   && rm -f $ROON_SERVER_PKG \
   && cat RoonServer/VERSION \
-  && find /RoonServer -name "*.dll" -delete \
-  && find /RoonServer -name "*.exe" -delete \
+#  && find /RoonServer -name "*.dll" -delete \
+#  && find /RoonServer -name "*.exe" -delete \
   && RoonServer/check.sh
 
 LABEL vendor="Roon Labs LLC" \
