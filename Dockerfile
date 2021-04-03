@@ -20,10 +20,10 @@ RUN curl -s $ROON_SERVER_URL -O \
 #  && find /RoonServer -name "*.exe" -delete \
   && RoonServer/check.sh
 
-LABEL org.opencontainers.image.vendor=Roon Labs LLC \
+LABEL org.opencontainers.image.vendor="Roon Labs LLC" \
       org.opencontainers.image.url=https://roonlabs.com \
-      org.opencontainers.image.title=Roon Server \
-      org.opencontainers.image.description=Music Player & Music Server for Enthusiasts \
+      org.opencontainers.image.title="Roon Server" \
+      org.opencontainers.image.description="Music Player & Music Server for Enthusiasts" \
       org.opencontainers.image.version=v1.8.1 \
       org.opencontainers.image.documentation=https://help.roonlabs.com/portal/en/home \
       com.roon.version="1.8 (build 783) stable" \
