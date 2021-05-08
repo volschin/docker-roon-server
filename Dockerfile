@@ -26,8 +26,8 @@ LABEL org.opencontainers.image.vendor="Roon Labs LLC" \
       org.opencontainers.image.description="Music Player & Music Server for Enthusiasts" \
       org.opencontainers.image.version=v1.8.1 \
       org.opencontainers.image.documentation=https://help.roonlabs.com/portal/en/home \
-      com.roon.version="1.8 (build 783) stable" \
-      com.roon.release-date="2021-03-30"
+      com.roon.version="1.8 (build 790) stable" \
+      com.roon.release-date="2021-04-13"
 
 # ENTRYPOINT /run.sh
 ENTRYPOINT ["/RoonServer/start.sh"]
