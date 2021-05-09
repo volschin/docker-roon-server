@@ -1,4 +1,4 @@
-FROM debian:11-slim
+FROM debian:bullseye-slim
 ENV DEBIAN_FRONTEND noninteractive
 ENV ROON_SERVER_PKG RoonServer_linuxx64.tar.bz2
 ENV ROON_SERVER_URL http://download.roonlabs.com/builds/${ROON_SERVER_PKG}
@@ -10,7 +10,7 @@ RUN apt-get -q update \
   && apt-get autoremove && apt-get clean \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-VOLUME [ "/app", "/data", "/music", "/backup" ]
+VOLUME [ "/data", "/music", "/backup" ]
 
 RUN curl -s $ROON_SERVER_URL -O \
   && tar xjf $ROON_SERVER_PKG \
