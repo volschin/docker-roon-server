@@ -1,7 +1,7 @@
 FROM debian:bullseye-slim
 ENV DEBIAN_FRONTEND noninteractive
 ENV ROON_SERVER_PKG RoonServer_linuxx64.tar.bz2
-ENV ROON_SERVER_URL http://download.roonlabs.com/builds/${ROON_SERVER_PKG}
+ENV ROON_SERVER_URL http://download.roonlabs.net/builds/${ROON_SERVER_PKG}
 ENV ROON_DATAROOT /data
 ENV ROON_ID_DIR /data
 
