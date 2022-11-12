@@ -5,13 +5,14 @@ ENV ROON_SERVER_URL http://download.roonlabs.net/builds/${ROON_SERVER_PKG}
 ENV ROON_DATAROOT /data
 ENV ROON_ID_DIR /data
 
-RUN apt-get -q update \
-  && apt-get install -qqy --no-install-recommends bash curl bzip2 ffmpeg cifs-utils alsa-utils procps \
-  && apt-get autoremove && apt-get clean \
+RUN apt-get -q update && apt-get -qq install eatmydata\
+  && eatmydata apt-get -qq upgrade && eatmydata apt-get install -qqy --no-install-recommends bash curl bzip2 ffmpeg cifs-utils alsa-utils procps \
+  && eatmydata apt-get autoremove && apt-get clean \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 VOLUME [ "/data", "/music", "/backup" ]
 
+ENV LD_PRELOAD libeatmydata.so
 RUN curl -s $ROON_SERVER_URL -O \
   && tar xjf $ROON_SERVER_PKG \
   && rm -f $ROON_SERVER_PKG \
