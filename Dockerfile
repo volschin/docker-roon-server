@@ -12,7 +12,7 @@ RUN apt-get -q update && apt-get -qq install eatmydata ca-certificates \
 
 VOLUME [ "/data", "/music", "/backup" ]
 
-ENV LD_PRELOAD libeatmydata.so
+#ENV LD_PRELOAD libeatmydata.so
 RUN curl -s $ROON_SERVER_URL -O \
   && tar xjf $ROON_SERVER_PKG \
   && rm -f $ROON_SERVER_PKG \
