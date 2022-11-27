@@ -5,7 +5,7 @@ ENV ROON_SERVER_URL https://download.roonlabs.net/builds/${ROON_SERVER_PKG}
 ENV ROON_DATAROOT /data
 ENV ROON_ID_DIR /data
 
-RUN apt-get -q update && apt-get -qq install eatmydata\
+RUN apt-get -q update && apt-get -qq install eatmydata ca-certificates \
   && eatmydata apt-get -qq upgrade && eatmydata apt-get install -qqy --no-install-recommends bash curl bzip2 ffmpeg cifs-utils alsa-utils procps \
   && eatmydata apt-get autoremove && apt-get clean \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
