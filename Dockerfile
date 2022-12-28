@@ -7,7 +7,7 @@ ENV ROON_ID_DIR /data
 
 RUN apt-get -q update && apt-get -qq install ca-certificates \
   && apt-get -qq upgrade && apt-get install -qqy --no-install-recommends bash curl bzip2 ffmpeg cifs-utils alsa-utils procps \
-  && eatmydata apt-get autoremove && apt-get clean \
+  && apt-get autoremove && apt-get clean \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 VOLUME [ "/data", "/music", "/backup" ]
@@ -26,8 +26,8 @@ LABEL org.opencontainers.image.vendor="Roon Labs LLC" \
       org.opencontainers.image.description="Music Player & Music Server for Enthusiasts" \
       org.opencontainers.image.version=v2.0.1 \
       org.opencontainers.image.documentation=https://help.roonlabs.com/portal/en/home \
-      com.roon.version="2.0 (build 1133) stable" \
-      com.roon.release-date="2022-10-10"
+      com.roon.version="2.0 (build 1182) stable" \
+      com.roon.release-date="2022-12-15"
 
 # ENTRYPOINT /run.sh
 ENTRYPOINT ["/RoonServer/start.sh"]
