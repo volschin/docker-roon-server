@@ -1,4 +1,4 @@
-FROM debian:bullseye-slim
+FROM debian:bookworm-slim
 ENV DEBIAN_FRONTEND noninteractive
 ENV ROON_SERVER_PKG RoonServer_linuxx64.tar.bz2
 ENV ROON_SERVER_URL https://download.roonlabs.net/builds/${ROON_SERVER_PKG}
@@ -24,10 +24,10 @@ LABEL org.opencontainers.image.vendor="Roon Labs LLC" \
       org.opencontainers.image.url=https://roonlabs.com \
       org.opencontainers.image.title="Roon Server" \
       org.opencontainers.image.description="Music Player & Music Server for Enthusiasts" \
-      org.opencontainers.image.version=v2.0.1 \
+      org.opencontainers.image.version=v2.0.17 \
       org.opencontainers.image.documentation=https://help.roonlabs.com/portal/en/home \
-      com.roon.version="2.0 (build 1182) stable" \
-      com.roon.release-date="2022-12-15"
+      com.roon.version="2.0 (build 1277) stable" \
+      com.roon.release-date="2023-06-13"
 
 # ENTRYPOINT /run.sh
 ENTRYPOINT ["/RoonServer/start.sh"]
