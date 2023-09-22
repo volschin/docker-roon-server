@@ -19,7 +19,7 @@ RUN curl -s $ROON_SERVER_URL -O \
 #  && find /RoonServer -name "*.dll" -delete \
 #  && find /RoonServer -name "*.exe" -delete \
   && RoonServer/check.sh \
-  && chown -R 9330:9330 /Roonserver
+  && chown -R 9330:9330 /RoonServer
 
 USER 9330:9330
 
