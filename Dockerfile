@@ -27,10 +27,10 @@ LABEL org.opencontainers.image.vendor="Roon Labs LLC" \
       org.opencontainers.image.url=https://roonlabs.com \
       org.opencontainers.image.title="Roon Server" \
       org.opencontainers.image.description="Music Player & Music Server for Enthusiasts" \
-      org.opencontainers.image.version=v2.0.17 \
+      org.opencontainers.image.version=v2.0.23 \
       org.opencontainers.image.documentation=https://help.roonlabs.com/portal/en/home \
-      com.roon.version="2.0 (build 1277) stable" \
-      com.roon.release-date="2023-06-13"
+      com.roon.version="2.0 (build 1311) stable" \
+      com.roon.release-date="2023-09-07"
 
 # ENTRYPOINT /run.sh
 ENTRYPOINT ["/RoonServer/start.sh"]
