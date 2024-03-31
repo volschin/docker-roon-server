@@ -5,9 +5,9 @@ ENV ROON_SERVER_URL https://download.roonlabs.net/builds/${ROON_SERVER_PKG}
 ENV ROON_DATAROOT /data
 ENV ROON_ID_DIR /data
 
-RUN apt -q update && apt install -qqy ca-certificates \
-  && apt -qqy upgrade && apt install -qqy --no-install-recommends bash curl bzip2 ffmpeg cifs-utils alsa-utils procps \
-  && apt autoremove && apt clean \
+RUN apt -qqy update && apt -qqy install ca-certificates \
+  && apt -qqy upgrade && apt -qqy install --no-install-recommends --no-install-suggests bash curl bzip2 ffmpeg cifs-utils alsa-utils procps \
+  && apt -qqy autoremove && apt -qqy clean \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 VOLUME [ "/data", "/music", "/backup" ]
@@ -25,11 +25,11 @@ LABEL org.opencontainers.image.vendor="Roon Labs LLC" \
       org.opencontainers.image.url=https://roonlabs.com \
       org.opencontainers.image.title="Roon Server" \
       org.opencontainers.image.description="Music Player & Music Server for Enthusiasts" \
-      org.opencontainers.image.version=v2.0.25 \
+      org.opencontainers.image.version=v2.0.31 \
       org.opencontainers.image.documentation=https://help.roonlabs.com/portal/en/home \
       org.opencontainers.image.authors="volschin@googlemail.com" \
-      com.roon.version="2.0 (build 1353) production" \
-      com.roon.release-date="2023-11-09"
+      com.roon.version="2.0 (build 1388) production" \
+      com.roon.release-date="2024-03-19"
 
 # ENTRYPOINT /run.sh
 ENTRYPOINT ["/RoonServer/start.sh"]
