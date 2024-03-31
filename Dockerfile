@@ -3,8 +3,8 @@ ADD https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz
 RUN apt-get -qqy update && apt-get -qqy install --no-install-recommends xz-utils \
   && cd /download \
   && tar -xvf ffmpeg-release-amd64-static.tar.xz --wildcards */ffmpeg \
-  && ls -la \
-  && ./ffmpeg
+  && ls -Rla \
+  && ./ffmpeg-6.1-amd64-static/ffmpeg
 
 FROM debian:bookworm-slim
 ENV DEBIAN_FRONTEND noninteractive
@@ -18,7 +18,7 @@ RUN apt-get -qqy update && apt-get -qqy upgrade \
   && apt-get -qqy autoremove && apt-get -qqy clean \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-COPY --from=ffmpeg /ffmpeg /ffmpeg
+COPY --from=ffmpeg /download/ffmpeg-6.1-amd64-static/ /ffmpeg/
 VOLUME [ "/data", "/music", "/backup" ]
 
 RUN ls -la /ffmpeg \
