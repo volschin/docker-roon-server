@@ -1,6 +1,6 @@
 FROM debian:bookworm-slim AS ffmpeg
 ADD https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz /
-RUN tar -xvf /ffmpeg-release-amd64-static.tar.xz /ffmpeg/
+RUN tar -xvf /ffmpeg-release-amd64-static.tar.xz -C /ffmpeg/
 
 FROM debian:bookworm-slim
 ENV DEBIAN_FRONTEND noninteractive
