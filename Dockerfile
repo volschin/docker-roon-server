@@ -1,6 +1,6 @@
 FROM debian:bookworm-slim AS ffmpeg
-ADD https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz https://johnvansickle.com/ffmpeg/builds/ffmpeg-git-amd64-static.tar.xz.md5 /
-RUN cd / && md5sum -c ffmpeg-git-amd64-static.tar.xz.md5 \
+ADD https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz https://johnvansickle.com/ffmpeg/builds/ffmpeg-release-amd64-static.tar.xz.md5 /
+RUN cd / && md5sum -c ffmpeg-release-amd64-static.tar.xz.md5 \
   && tar -xvf /ffmpeg-release-amd64-static.tar.xz -C /ffmpeg/ \
   && ls ffmpeg-release-amd64-static \
   && /ffmpeg-release-amd64-static/ffmpeg
