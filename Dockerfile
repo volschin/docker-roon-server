@@ -2,7 +2,7 @@ FROM debian:bookworm-slim AS ffmpeg
 ADD https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz /download/
 RUN apt-get -qqy update && apt-get -qqy install --no-install-recommends xz-utils \
   && cd /download \
-  && tar -xvf --wildcards ffmpeg-release-amd64-static.tar.xz */ffmpeg \
+  && tar -xvf ffmpeg-release-amd64-static.tar.xz --wildcards */ffmpeg \
   && ls -la \
   && ./ffmpeg
 
