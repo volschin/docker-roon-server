@@ -10,14 +10,15 @@ ENV ROON_DATAROOT /data
 ENV ROON_ID_DIR /data
 
 RUN apt -qqy update && apt -qqy upgrade \
-  && apt -qqy install --no-install-recommends --no-install-suggests ca-certificates bash curl bzip2 libicu67 cifs-utils alsa-utils procps \
+  && apt -qqy install --no-install-recommends --no-install-suggests ca-certificates bash curl bzip2 libicu72 cifs-utils alsa-utils procps \
   && apt -qqy autoremove && apt -qqy clean \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-#COPY --from
+COPY --from=ffmpeg /ffmpeg /ffmpeg
 VOLUME [ "/data", "/music", "/backup" ]
 
-RUN curl -s $ROON_SERVER_URL -O \
+RUN ls -la /ffmpeg \
+  && curl -s $ROON_SERVER_URL -O \
   && tar xjf $ROON_SERVER_PKG \
   && rm -f $ROON_SERVER_PKG \
   && cat RoonServer/VERSION \
