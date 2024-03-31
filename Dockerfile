@@ -6,10 +6,11 @@ ENV ROON_DATAROOT /data
 ENV ROON_ID_DIR /data
 
 RUN apt -qqy update && apt -qqy install ca-certificates \
-  && apt -qqy upgrade && apt -qqy install --no-install-recommends --no-install-suggests bash curl bzip2 ffmpeg cifs-utils alsa-utils procps \
+  && apt -qqy upgrade && apt -qqy install --no-install-recommends --no-install-suggests bash curl bzip2 cifs-utils alsa-utils procps \
   && apt -qqy autoremove && apt -qqy clean \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+ADD https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz /usr/bin/
 VOLUME [ "/data", "/music", "/backup" ]
 
 RUN curl -s $ROON_SERVER_URL -O \
@@ -31,5 +32,4 @@ LABEL org.opencontainers.image.vendor="Roon Labs LLC" \
       com.roon.version="2.0 (build 1388) production" \
       com.roon.release-date="2024-03-19"
 
-# ENTRYPOINT /run.sh
 ENTRYPOINT ["/RoonServer/start.sh"]
