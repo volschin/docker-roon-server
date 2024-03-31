@@ -5,7 +5,7 @@ RUN apt-get -qqy update && apt-get -qqy install --no-install-recommends xz-utils
   && tar -xvf ffmpeg-release-amd64-static.tar.xz --wildcards */ffmpeg \
   && ls -Rla \
   && grep -R put **/ffmpeg \
-  && ./ffmpeg-6.1-amd64-static/ffmpeg
+  && ./ffmpeg-6.1-amd64-static/ffmpeg -version
 
 FROM debian:bookworm-slim
 ENV DEBIAN_FRONTEND noninteractive
