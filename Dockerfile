@@ -4,6 +4,7 @@ RUN apt-get -qqy update && apt-get -qqy install --no-install-recommends xz-utils
   && cd /download \
   && tar -xvf ffmpeg-release-amd64-static.tar.xz --wildcards */ffmpeg \
   && ls -Rla \
+  && grep -R put **/ffmpeg \
   && ./ffmpeg-6.1-amd64-static/ffmpeg
 
 FROM debian:bookworm-slim
@@ -18,11 +19,10 @@ RUN apt-get -qqy update && apt-get -qqy upgrade \
   && apt-get -qqy autoremove && apt-get -qqy clean \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-COPY --from=ffmpeg /download/ffmpeg-6.1-amd64-static/ /ffmpeg/
+COPY --from=ffmpeg /download/ffmpeg-6.1-amd64-static/ /usr/bin/
 VOLUME [ "/data", "/music", "/backup" ]
 
-RUN ls -la /ffmpeg \
-  && curl -s $ROON_SERVER_URL -O \
+RUN curl -s $ROON_SERVER_URL -O \
   && tar xjf $ROON_SERVER_PKG \
   && rm -f $ROON_SERVER_PKG \
   && cat RoonServer/VERSION \
