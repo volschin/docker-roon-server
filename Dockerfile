@@ -1,3 +1,7 @@
+FROM debian:bookworm-slim AS ffmpeg
+ADD https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz /
+RUN tar -xvf /ffmpeg-release-amd64-static.tar.xz /ffmpeg/
+
 FROM debian:bookworm-slim
 ENV DEBIAN_FRONTEND noninteractive
 ENV ROON_SERVER_PKG RoonServer_linuxx64.tar.bz2
@@ -10,7 +14,7 @@ RUN apt -qqy update && apt -qqy upgrade \
   && apt -qqy autoremove && apt -qqy clean \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-ADD https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz /usr/bin/
+#COPY --from
 VOLUME [ "/data", "/music", "/backup" ]
 
 RUN curl -s $ROON_SERVER_URL -O \
