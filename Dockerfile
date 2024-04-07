@@ -26,10 +26,40 @@ LABEL org.opencontainers.image.vendor="Roon Labs LLC" \
       org.opencontainers.image.url=https://roonlabs.com \
       org.opencontainers.image.title="Roon Server" \
       org.opencontainers.image.description="Music Player & Music Server for Enthusiasts" \
-      org.opencontainers.image.version=v2.0.31 \
+      org.opencontainers.image.version=v2.0.32 \
       org.opencontainers.image.documentation=https://help.roonlabs.com/portal/en/home \
       org.opencontainers.image.authors="volschin@googlemail.com" \
-      com.roon.version="2.0 (build 1388) production" \
-      com.roon.release-date="2024-03-19"
+      com.roon.version="2.0 (build 1392) production" \
+      com.roon.release-date="2024-04-02"
+
+# Roon documented ports
+#  - multicast (discovery?)
+EXPOSE 9003/udp
+#  - Roon Display
+EXPOSE 9100/tcp
+#  - RAAT
+EXPOSE 9100-9200/tcp
+#  - Roon events from cloud to core (websocket?)
+EXPOSE 9200/tcp
+# Chromecast devices
+EXPOSE 30000-30010/tcp
+
+# See https://github.com/elgeeko1/roon-server-docker/issues/5
+# https://community.roonlabs.com/t/what-are-the-new-ports-that-roon-server-needs-open-in-the-firewall/186023/16
+EXPOSE 9330-9339/tcp
+
+# ports experimentally determined; or, documented
+# somewhere and source forgotten; or, commented
+# in a forum without explanation. I swear I know
+# what these ports do but I've run out of space
+# in the margin to write the solution. Either way
+# there are no other services running in the
+# container that should bind to these ports,
+# so exposing them shouldn't pose a security risk.
+EXPOSE 9001-9002/tcp
+EXPOSE 49863/tcp
+EXPOSE 52667/tcp
+EXPOSE 52709/tcp
+EXPOSE 63098-63100/tcp
 
 ENTRYPOINT ["/RoonServer/start.sh"]
