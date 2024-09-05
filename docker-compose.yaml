@@ -1,0 +1,100 @@
+x-restart-policy: &restart_policy
+  restart: unless-stopped
+  logging:
+    options:
+      max-size: "10m"
+      max-file: "3"
+services:
+  roon:
+    image: volschin/roon:latest
+    container_name: roonserver
+    hostname: roonserver
+    mac_address: 02:42:c0:a8:02:10
+    <<: *restart_policy
+    networks:
+      vlan30:
+        ipv4_address: 192.168.2.16
+    user: ${PUID}:${PUID}
+    environment:
+      - TZ=${TZ}
+#    devices:
+#      - /dev/dri/renderD128:/dev/dri/renderD128
+
+#      - /dev/snd/controlC1
+#      - /dev/snd/pcmC1D0p
+    deploy:
+      resources:
+        limits:
+          cpus: '3'
+          memory: 8G
+        reservations:
+          cpus: '0.5'
+          memory: 2G
+    volumes:
+      - ${HOME_PATH}/app:/app
+      - ${HOME_PATH}/data:/data
+      - music:/music
+      - backup:/backup
+      - ${HOME_PATH}/asound.state:/var/lib/alsa/asound.state
+
+  roon-extension-mqtt:
+    image: ghcr.io/volschin/roon-extension-mqtt:2.4
+    container_name: roon-extension-mqtt
+    depends_on:
+      - roon
+    <<: *restart_policy
+    network_mode: service:roon
+    user: ${PUID}:${PUID}
+    environment:
+      - TZ=${TZ}
+    volumes:
+      - ${HOME_PATH}/ext-mqtt:/usr/src/app/config/
+
+  roon-extension-deep-harmony:
+    image: volschin/roon-extension-deep-harmony:latest
+    container_name: roon-extension-deep-harmony
+    depends_on:
+      - roon
+    <<: *restart_policy
+    network_mode: service:roon
+#    user: ${PUID}:${PUID}
+    environment:
+      - TZ=${TZ}
+    deploy:
+      resources:
+        limits:
+          cpus: '0.2'
+          memory: 256M
+        reservations:
+          cpus: '0.01'
+          memory: 128M
+    volumes:
+      - ${HOME_PATH}/ext-harm/config.json:/config.json
+      - extension-deep-harmony_logs:/logs/
+
+  aiguestdj-roon:
+    image: aiguestdj/roon-extension-aiguestdj:latest
+    container_name: roon-extension-aiguestdj
+    depends_on:
+      - roon
+    <<: *restart_policy
+    network_mode: service:roon
+    volumes:
+      - ${HOME_PATH}/ext-aiguestdj:/app/config
+    environment:
+      - TZ=${TZ}
+      - PORT=9010
+      - OPENAI_KEY=${OPENAI_KEY}
+      
+networks:
+  vlan30:
+    external: true
+
+volumes:
+  extension-deep-harmony_logs:
+  backup:
+  music:
+    driver_opts:
+      type: "nfs"
+      o: addr=192.168.37.7,nolock,vers=4,soft,rw
+      device: ":/volume1/Musik"
