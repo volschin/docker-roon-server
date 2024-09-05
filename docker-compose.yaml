@@ -85,7 +85,7 @@ services:
       - TZ=${TZ}
       - PORT=9010
       - OPENAI_KEY=${OPENAI_KEY}
-      
+
 networks:
   vlan30:
     external: true
