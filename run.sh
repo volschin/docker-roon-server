@@ -6,4 +6,5 @@ if test ! -d RoonServer; then
   rm -f $ROON_SERVER_PKG
 fi
 /usr/sbin/alsactl restore
+echo Starting RoonServer with user `whoami`
 exec /app/RoonServer/start.sh
