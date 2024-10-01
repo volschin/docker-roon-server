@@ -62,4 +62,7 @@ EXPOSE 52667/tcp
 EXPOSE 52709/tcp
 EXPOSE 63098-63100/tcp
 
+HEALTHCHECK --interval=1m --timeout=1s \
+	CMD curl -f http://localhost:9330/display
+
 ENTRYPOINT ["/RoonServer/start.sh"]
