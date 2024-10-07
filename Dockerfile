@@ -63,6 +63,6 @@ EXPOSE 52709/tcp
 EXPOSE 63098-63100/tcp
 
 HEALTHCHECK --interval=1m --timeout=1s --retries=3 --start-period=30s \
-	CMD curl -fsS http://localhost:9330/display
+    CMD curl -fsS http://localhost:9330/display
 
 ENTRYPOINT ["/RoonServer/start.sh"]
