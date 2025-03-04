@@ -4,6 +4,7 @@ x-restart-policy: &restart_policy
     options:
       max-size: "10m"
       max-file: "3"
+
 services:
   roon:
     image: volschin/roon:latest
@@ -17,9 +18,8 @@ services:
     user: ${PUID}:${PUID}
     environment:
       - TZ=${TZ}
-#    devices:
-#      - /dev/dri/renderD128:/dev/dri/renderD128
-
+    devices:
+      - /dev/dri/renderD128:/dev/dri/renderD128
 #      - /dev/snd/controlC1
 #      - /dev/snd/pcmC1D0p
     deploy:
@@ -34,7 +34,7 @@ services:
       - ${HOME_PATH}/app:/app
       - ${HOME_PATH}/data:/data
       - music:/music
-      - backup:/backup
+      - ${HOME_PATH}/backup:/backup
       - ${HOME_PATH}/asound.state:/var/lib/alsa/asound.state
 
   roon-extension-mqtt:
@@ -70,7 +70,7 @@ services:
           memory: 128M
     volumes:
       - ${HOME_PATH}/ext-harm/config.json:/config.json
-      - extension-deep-harmony_logs:/logs/
+      - ${HOME_PATH}/ext-harm/logs:/logs/
 
   aiguestdj-roon:
     image: aiguestdj/roon-extension-aiguestdj:latest
@@ -79,6 +79,7 @@ services:
       - roon
     <<: *restart_policy
     network_mode: service:roon
+    user: ${PUID}:${PUID}
     volumes:
       - ${HOME_PATH}/ext-aiguestdj:/app/config
     environment:
@@ -91,8 +92,6 @@ networks:
     external: true
 
 volumes:
-  extension-deep-harmony_logs:
-  backup:
   music:
     driver_opts:
       type: "nfs"
