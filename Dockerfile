@@ -1,9 +1,9 @@
 FROM debian:12.9-slim
-ENV DEBIAN_FRONTEND noninteractive
-ENV ROON_SERVER_PKG RoonServer_linuxx64.tar.bz2
-ENV ROON_SERVER_URL https://download.roonlabs.net/builds/${ROON_SERVER_PKG}
-ENV ROON_DATAROOT /data
-ENV ROON_ID_DIR /data
+ENV DEBIAN_FRONTEND=noninteractive
+ENV ROON_SERVER_PKG=RoonServer_linuxx64.tar.bz2
+ENV ROON_SERVER_URL=https://download.roonlabs.net/builds/${ROON_SERVER_PKG}
+ENV ROON_DATAROOT=/data
+ENV ROON_ID_DIR=/data
 
 RUN apt-get -qqy update && apt-get -qqy upgrade \
   && apt-get -qqy install --no-install-recommends --no-install-suggests ca-certificates bash curl bzip2 libicu72 cifs-utils alsa-utils procps \
