@@ -18,6 +18,10 @@ RUN curl -s $ROON_SERVER_URL -O \
   && rm -f $ROON_SERVER_PKG \
   && cat RoonServer/VERSION \
   && RoonServer/check.sh \
+  && useradd \
+		--uid 9330 \
+		--user-group roon; \
+  && usermod -aG audio roon \
   && chown -R 9330:9330 /RoonServer
 
 USER 9330:9330
@@ -26,11 +30,11 @@ LABEL org.opencontainers.image.vendor="Roon Labs LLC" \
       org.opencontainers.image.url=https://roonlabs.com \
       org.opencontainers.image.title="Roon Server" \
       org.opencontainers.image.description="Music Player & Music Server for Enthusiasts" \
-      org.opencontainers.image.version=v2.0.33 \
+      org.opencontainers.image.version=v2.34.0 \
       org.opencontainers.image.documentation=https://help.roonlabs.com/portal/en/home \
       org.opencontainers.image.authors="volschin@googlemail.com" \
-      com.roon.version="2.0 (build 1455) production" \
-      com.roon.release-date="2024-09-02"
+      com.roon.version="2.47 (build 1510) production" \
+      com.roon.release-date="2025-02-20"
 
 # Roon documented ports
 #  - multicast (discovery?)
