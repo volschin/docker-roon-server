@@ -18,9 +18,7 @@ RUN curl -s $ROON_SERVER_URL -O \
   && rm -f $ROON_SERVER_PKG \
   && cat RoonServer/VERSION \
   && RoonServer/check.sh \
-  && useradd \
-		--uid 9330 \
-		--user-group roon; \
+  && useradd --uid 9330 --user-group roon \
   && usermod -aG audio roon \
   && chown -R 9330:9330 /RoonServer
 
