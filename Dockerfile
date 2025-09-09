@@ -1,4 +1,4 @@
-FROM debian:13.0-slim
+FROM debian:13.1-slim
 ENV DEBIAN_FRONTEND=noninteractive
 ENV ROON_SERVER_PKG=RoonServer_linuxx64.tar.bz2
 ENV ROON_SERVER_URL=https://download.roonlabs.net/builds/${ROON_SERVER_PKG}
