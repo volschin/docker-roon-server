@@ -7,7 +7,7 @@ ENV ROON_ID_DIR=/data
 
 RUN apt -qqy update && apt -qqy upgrade \
   && apt -qqy install --no-install-recommends --no-install-suggests ca-certificates bash curl bzip2 \
-#  libicu72 \
+  libicu76 \
   cifs-utils alsa-utils procps \
   && apt -qqy autoremove && apt -qqy clean \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
