@@ -5,9 +5,11 @@ ENV ROON_SERVER_URL=https://download.roonlabs.net/builds/${ROON_SERVER_PKG}
 ENV ROON_DATAROOT=/data
 ENV ROON_ID_DIR=/data
 
-RUN apt-get -qqy update && apt-get -qqy upgrade \
-  && apt-get -qqy install --no-install-recommends --no-install-suggests ca-certificates bash curl bzip2 libicu72 cifs-utils alsa-utils procps \
-  && apt-get -qqy autoremove && apt-get -qqy clean \
+RUN apt -qqy update && apt -qqy upgrade \
+  && apt -qqy install --no-install-recommends --no-install-suggests ca-certificates bash curl bzip2 \
+#  libicu72 \
+  cifs-utils alsa-utils procps \
+  && apt -qqy autoremove && apt -qqy clean \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 COPY --from=ghcr.io/volschin/ffmpeg-static:main /download/ffmpeg /usr/bin/
