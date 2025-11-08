@@ -30,11 +30,11 @@ LABEL org.opencontainers.image.vendor="Roon Labs LLC" \
       org.opencontainers.image.url=https://roonlabs.com \
       org.opencontainers.image.title="Roon Server" \
       org.opencontainers.image.description="Music Player & Music Server for Enthusiasts" \
-      org.opencontainers.image.version=v2.35.0 \
+      org.opencontainers.image.version=v2.36.0 \
       org.opencontainers.image.documentation=https://help.roonlabs.com/portal/en/home \
       org.opencontainers.image.authors="volschin@googlemail.com" \
-      com.roon.version="2.52 (build 1538) production" \
-      com.roon.release-date="2025-06-20"
+      com.roon.version="2.56 (build 1582) production" \
+      com.roon.release-date="2025-11-08"
 
 # Roon documented ports
 #  - multicast (discovery?)
