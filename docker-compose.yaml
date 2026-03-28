@@ -7,7 +7,7 @@ x-restart-policy: &restart_policy
 
 services:
   roon:
-    image: volschin/roon:latest
+    image: ghcr.io/volschin/roon:latest
     container_name: roonserver
     hostname: roonserver
     mac_address: 02:42:c0:a8:02:10
