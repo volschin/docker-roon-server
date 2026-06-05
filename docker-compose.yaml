@@ -38,7 +38,7 @@ services:
       - ${HOME_PATH}/asound.state:/var/lib/alsa/asound.state
 
   roon-extension-mqtt:
-    image: ghcr.io/volschin/roon-extension-mqtt:2.4
+    image: ghcr.io/volschin/roon-extension-mqtt:2.5
     container_name: roon-extension-mqtt
     depends_on:
       - roon
